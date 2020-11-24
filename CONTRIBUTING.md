@@ -17,9 +17,9 @@ If you don't know what is wrong
 -------------------------------
 
 If you don't see any metrics at all or features are not working maybe you have a setup or configuration problem, to
-address this kind of problems please send us a emails to our [mailing list] and we will reply as soon as we can! Again,
+address this kind of problems please open a new [discussion] and we will reply as soon as we can! Again,
 please include the relevant version and current setup information to speed up the process. If you are in doubt of
-whether you have a bug or a configuration problem, email us and we will take care of openning a issue if necessary.
+whether you have a bug or a configuration problem, just open a discussion and we'll turn it into an issue if it's a bug.
 
 If you want to make a code contribution to the project
 ------------------------------------------------------
@@ -30,6 +30,6 @@ please squash them into a single commit. Let the PR rain begin!
 
 
 [open an issue]: https://github.com/kamon-io/Kamon/issues/new
-[mailing list]: https://groups.google.com/forum/#!forum/kamon-user
+[discussion]: https://github.com/kamon-io/Kamon/discussions
 [commit message conventions]: http://spray.io/project-info/contributing/
 [CLA]: https://docs.google.com/forms/d/1G_IDrBTFzOMwHvhxfKRBwNtpRelSa_MZ6jecH8lpTlc/viewform
