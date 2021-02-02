@@ -78,6 +78,11 @@ sealed abstract class Span extends Sampler.Operation {
   def trace: Trace
 
   /**
+    * Returns true if this Span was finished.
+    */
+  def isFinished: Boolean
+
+  /**
     * Returns true if this Span was initially created in another process and then transferred to this process.
     */
   def isRemote: Boolean
@@ -426,6 +431,7 @@ object Span {
 
     override val isRemote: Boolean = false
     override val isEmpty: Boolean = false
+    override val isFinished: Boolean = _isOpen
 
     override def start(): Delayed =
       start(clock.instant())
@@ -679,6 +685,7 @@ object Span {
     override def kind: Kind = Kind.Unknown
     override def isRemote: Boolean = false
     override def isEmpty: Boolean = true
+    override def isFinished: Boolean = true
     override def position(): Position = Position.Unknown
     override def tag(key: String, value: String): Span = this
     override def tag(key: String, value: Long): Span = this
@@ -715,6 +722,7 @@ object Span {
     override def kind: Kind = Kind.Unknown
     override def isRemote: Boolean = true
     override def isEmpty: Boolean = false
+    override def isFinished: Boolean = false
     override def position(): Position = Position.Unknown
     override def tag(key: String, value: String): Span = this
     override def tag(key: String, value: Long): Span = this

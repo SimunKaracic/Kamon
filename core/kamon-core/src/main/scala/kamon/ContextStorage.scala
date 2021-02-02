@@ -18,6 +18,7 @@ package kamon
 
 import kamon.context.{Context, Storage}
 import kamon.trace.Span
+import org.slf4j.LoggerFactory
 
 import scala.util.control.NonFatal
 
@@ -28,6 +29,7 @@ import scala.util.control.NonFatal
 trait ContextStorage {
   import ContextStorage._
 
+  private val log = LoggerFactory.getLogger(classOf[ContextStorage])
   /**
     * Returns the current Context on Kamon's Context Storage. As the default behavior, this will return Context.Empty if
     * no other Context has been stored on the calling thread.
@@ -118,6 +120,9 @@ trait ContextStorage {
     */
   @inline def runWithSpan[T](span: Span, finishSpan: Boolean)(f: => T): T = {
     try {
+      if (span.isFinished) {
+        log.warn(s"Running with a finished span: ${span},${span.operationName()}")
+      }
       runWithContextEntry(Span.Key, span)(f)
     } catch {
       case NonFatal(t) =>
